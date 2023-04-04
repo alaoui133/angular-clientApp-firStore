@@ -1,0 +1,48 @@
+<div class="row m-3">
+    <div class="col-md-6" routerLinkActive="active">
+        <a routerLink="/addClient" class="btn btn-success" >
+            <i class="fa fa-plus"></i> New Client
+        </a>
+    </div>
+
+</div>
+
+<div class="row m-6 text-end">
+    <div class="col align-self-end ">
+        <h4>Total : {{total | currency:'USD':'symbol':'1.3-3' }}</h4>
+    </div>
+</div>
+<div class="card">
+    <div class="card-body">
+        <h4 class="card-title">Clients List</h4>
+        <input #query (keyup)="search(query.value)" type="text" class="form-control" placeholder="Search...">
+        <div class="table-responsive">
+            <table class="table table-striped">
+                <thead class="table-light">
+                    <tr>
+                        <th>Name</th>
+                        <th>Phone </th>
+                        <th>Balance</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody class="table-group-divider">
+                    <tr *ngFor="let client of searchClients" class="" (dblclick)="deleteClient(client.id!)">
+                        <td scope="row">{{client.firstName}} {{client.lastName}}</td>
+                        <td>{{client.phone}}</td>
+                        <td #totall>{{client.balance |currency:"USD":"symbol"}}</td>
+                        <td class="text-end">
+                            <a routerLink="/client/{{client.id}}" class="btn btn-info"><i class="fa fa-info-circle"></i></a>
+                            <a routerLink="/client/edit/{{client.id}}" class="btn btn-warning"><i class="fa fa-pencil"></i></a>
+                        </td>
+                    </tr>
+
+                </tbody>
+                <tfoot>
+
+                </tfoot>
+            </table>
+        </div>
+
+    </div>
+</div>

@@ -1,0 +1,63 @@
+<div class="row m-3">
+    <div class="col md-6">
+        <a routerLink="/dashboard" class="fa fa-arrow-circle-left"> Go to Dashboard</a>
+    </div>
+
+    <div class="col-md-6 text-end">
+        <div class="btn-group">
+            <button class="btn btn-danger" routerLink="/client/edit/{{id}}">
+                Edit <i class="fa fa-pencil"></i>
+            </button>
+
+            <button class="btn btn-dark" (click)="deleteClient(id)">
+                Delete <i class="fa fa-trash"></i>
+            </button>
+        </div>
+    </div>
+</div>
+
+<div class="card">
+    <div class="card-body">
+        <h4 class="card-title">{{client.firstName}} {{client.lastName}}</h4>
+
+        <div class="row">
+            <div class="col col-8">
+                <ul class="list-group list-group">
+                    <li class="list-group-item ">ID: <b>{{id}}</b></li>
+                    <li class="list-group-item ">Phone: <b>{{client.phone}}</b></li>
+                    <li class="list-group-item">Email: <b>{{client.email}}</b></li>
+                </ul>
+            </div>
+
+            <div class="col col-md-4 text-end">
+                <span class="h5">Balance</span> :
+                <button class="btn btn-success" (click)="showBalance=!showBalance">
+                    <i class="fa fa-pencil"></i>
+                </button>
+                <h4 [ngClass]="{'text-danger':showBalance,'text-success':!showBalance}">{{client.balance |
+                    currency:"USD":"symbol"}}</h4>
+
+                <div *ngIf="showBalance">
+                    <form (ngSubmit)="onSubmit()">
+                        <div class="input-group">
+                            <input type="text" class="form-control" name="balance" [(ngModel)]="client.balance">
+                            <div class="btn-group">
+                            <button class="btn btn-warning">Update</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+        </div>
+
+
+
+    </div>
+</div>
+
+<div class="row">
+    <div class="col m-12">
+
+    </div>
+</div>
